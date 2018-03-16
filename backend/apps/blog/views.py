@@ -25,6 +25,7 @@ class PostViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         query_set = super().get_queryset()
+        #获取请求参数---》slug后缀
         category = self.request.query_params.get('category',None)
         tags = self.request.query_params.get('tag',None)
         archive = self.request.query_params.get('archive', None)
@@ -32,6 +33,7 @@ class PostViewSet(viewsets.ModelViewSet):
             query_set = query_set.filter(category__slug=category)
         if tags is not None:
             query_set = query_set.filter(tags__slug=tags)
+            #query_set = Tag.objects.get(slug=tags).post_set.all()
         if archive is not None:
             if len(archive) != 6:
                 raise ParseError
