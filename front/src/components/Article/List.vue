@@ -32,6 +32,15 @@
         </ul>
       </div>
     </div> 
+    <div class="pagination">
+      <el-pagination
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+        :page-size="10"
+        layout="prev, pager, next, jumper"
+        :total="1000">
+      </el-pagination>
+    </div>
   </div>
 </template>
 
@@ -45,20 +54,30 @@ export default {
   .one-artical {
     margin: 0 auto;
     width: 50%;
+    border-bottom: 2px solid #e9eaec;
+    padding-top: 25px;
+    padding-bottom: 20px;
+    text-align: left;
   }
   .one-title {
-    margin: 20px 0 10px;
-    float: left;
+    margin-bottom: 20px;
   }
   .one-body {
-    float: left;
     font-size: 14px;
   }
   .one-foot {
-    float: left;
-    margin-top: 10px;
+    margin-top: 15px;
   }
   .one-foot ul li {
     margin-right: 20px;
+  }
+  .pagination {
+    position: absolute;
+    /* bottom: 70px; */
+    margin: 10px auto;
+    text-align: center;
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
   }
 </style>

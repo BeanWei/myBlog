@@ -16,10 +16,10 @@
         <el-input placeholder="请输入内容" prefix-icon="el-icon-search"></el-input>
       </div>        
     </div>
-    <!-- <footer>
-      <div>页脚</div>
-    </footer> -->
     <router-view></router-view>
+    <footer>
+      <div class="page-foot">页脚</div>
+    </footer>
   </div>
 </template>
 
@@ -56,9 +56,10 @@ export default {
     width: 20%;
   }
   footer {
-    border-top-style: solid;
-    border-top-width: 1px;
-    border-top-color: #545c64;
-    padding: 10px 0;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    border-top: 1px solid#D3D3D3; 
+    margin: 50px auto;
   }
 </style>
