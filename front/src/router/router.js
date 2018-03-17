@@ -12,6 +12,7 @@ export const pageRouter = [
     children: [
       {path: 'blog/(page/)?:page(\\d+)?/',name:'blog',component: List,alias: '/'},
       {path: 'blog/:slug',name: 'article',component: Detail}
+      // {path: 'blog/(page/)?:page(\\d+)?/',name:'blog',component: Detail,alias: '/'}
     ]
   }
 ]

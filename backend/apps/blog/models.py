@@ -19,7 +19,7 @@ class Tag(models.Model):
         return '%s' % self.name
 
     def save(self, *args, **kwargs):
-        title = self.title.replace(' ', '_').lower()
+        title = self.name.replace(' ', '_').lower()
         title = re.sub(r'\W+', '', title)
         name_pinyin = lazy_pinyin(title)
         self.slug = '_'.join(name_pinyin)[:100]
@@ -42,7 +42,7 @@ class Category(models.Model):
         return '%s' % self.name
 
     def save(self, *args, **kwargs):
-        title = self.title.replace(' ', '_').lower()
+        title = self.name.replace(' ', '_').lower()
         title = re.sub(r'\W+', '', title)
         name_pinyin = lazy_pinyin(title)
         self.slug = '_'.join(name_pinyin)[:100]

@@ -4,12 +4,12 @@
       <div id="logo">Logo</div>
       <div class="middle">
         <ul>
-          <li><a href="#">博客</a></li>
-          <li><a href="#">资讯</a></li>
-          <li><a href="#">归档</a></li>
-          <li><a href="#">分类</a></li>
-          <li><a href="#">标签</a></li>
-          <li><a href="#">关于</a></li>
+          <li><router-link :to="{name: 'blog'}">博客</router-link></li>
+          <li><router-link :to="{name: 'newsBoard'}">资讯</router-link></li>
+          <li><router-link :to="{name: 'archive'}">归档</router-link></li>
+          <li><router-link :to="{name: 'category'}">分类</router-link></li>
+          <li><router-link :to="{name: 'tags'}">标签</router-link></li>
+          <li><router-link :to="{name: 'aboutMe'}">关于</router-link></li>
         </ul>
       </div>
       <div id="nav-search">
