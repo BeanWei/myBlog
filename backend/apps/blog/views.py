@@ -52,9 +52,11 @@ class PostViewSet(viewsets.ModelViewSet):
     @list_route(url_path='archive')
     def date_archive(self,request):
         archives = []
-        timestamp_month = self.queryset.dates('timestamp', 'month', 'DESC')
+        timestamp_month = self.queryset.dates('timestamp', 'month', order='DESC')
         for pub in timestamp_month:
-            num = self.queryset.filter(timestamp__year=pub.year, timestamp__month=pub.month).count()
-            archives.append({'record': '{:d}-{:d}'.format(pub.year, pub.month),  'num': num})
+            #num = self.queryset.filter(timestamp__year=pub.year, timestamp__month=int(pub.month)).count()
+            '''%02d 0为占位符 占2位 月份为2位，不然无法查询，哲理需要转化一下格式，1-9月前面补零'''
+            num = self.queryset.filter(timestamp__startswith="%d-%02d" % (pub.year, pub.month)).count()
+            archives.append({'record': '{:d}年{:d}月'.format(pub.year, pub.month),  'num': num})
 
         return Response(archives)
