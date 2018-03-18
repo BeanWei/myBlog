@@ -34,7 +34,7 @@ export function categories() {
 }
 
 //博文归档
-export function archive() {
+export function archives() {
   return fetch({
     method: 'get',
     url: `/blog/articles/archive/`

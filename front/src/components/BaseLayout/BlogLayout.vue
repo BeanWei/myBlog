@@ -18,25 +18,31 @@
       <div class="panel-item">
         <h5>分类</h5>
         <ul>
-          <li><el-tag>分类一00</el-tag></li>
-          <li><el-tag>分类二</el-tag></li>
-          <li><el-tag>分类三</el-tag></li>
+          <li v-for="(category,index) in categoryList" :key="index" v-if="category.count>0">
+            <el-badge :value="category.count">
+              <el-button type="danger" size="small" plain>{{category.name}}</el-button>
+            </el-badge>
+          </li>
         </ul>
       </div>
       <div class="panel-item">
         <h5>标签</h5>
         <ul>
-          <li><el-tag>标签一</el-tag></li>
-          <li><el-tag>标签二</el-tag></li>
-          <li><el-tag>标签三</el-tag></li>
+          <li v-for="(tag,index) in tagList" :key="index" v-if="tag.count>0">
+            <el-badge :value="tag.count">
+              <el-button type="danger" size="small" plain>{{tag.name}}</el-button>
+            </el-badge>
+          </li>
         </ul>
       </div>
       <div class="panel-item">
         <h5>归档</h5>
         <ul>
-          <li><el-tag>归档一</el-tag></li>
-          <li><el-tag>归档二</el-tag></li>
-          <li><el-tag>归档三</el-tag></li>
+          <li v-for="(archive,index) in archiveList" :key="index">
+            <el-badge :value="archive.num">
+              <el-button type="danger" size="small" plain>{{archive.record}}</el-button>
+            </el-badge>
+          </li>
         </ul>
       </div>
     </div>
@@ -48,16 +54,42 @@
 </template>
 
 <script>
+
+import { categories,tags,archives } from '../../API/API'
+
 export default {
   name: 'BlogLayout',
   data() {
     return {
-      panelShow: false
+      panelShow: false,
+      categoryList: [],
+      tagList: [],
+      archiveList: [],
     }
+  },
+  created() {
+    this.getCategoryList();
+    this.getTagList();
+    this.getArchiveList();
   },
   methods: {
     showPanle() {
       this.panelShow =! this.panelShow
+    },
+    getCategoryList() {
+      categories(this.$route.query.category).then(res => {
+        this.categoryList = res.data
+      })
+    },
+    getTagList() {
+      tags(this.$route.query.tag).then(res => {
+        this.tagList = res.data
+      })
+    },
+    getArchiveList() {
+      archives(this.$route.query.archive).then(res => {
+        this.archiveList = res.data
+      })
     }
   }
 }
@@ -108,6 +140,9 @@ export default {
   }
   .panel-item {
     margin: 10px 5px;
+  }
+  .panel-item ul li{
+    margin: 5px 15px 5px 2px;
   }
   footer {
     position: absolute;
