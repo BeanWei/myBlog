@@ -20,7 +20,7 @@
         <ul>
           <li v-for="(category,index) in categoryList" :key="index" v-if="category.count>0">
             <el-badge :value="category.count">
-              <el-button type="danger" size="small" plain>{{category.name}}</el-button>
+              <el-button type="danger" size="small" plain @click="categorySelect(category.slug)">{{category.name}}</el-button>
             </el-badge>
           </li>
         </ul>
@@ -90,7 +90,10 @@ export default {
       archives(this.$route.query.archive).then(res => {
         this.archiveList = res.data
       })
-    }
+    },
+    categorySelect(slug) {
+      this.$router.push({name:'blog',query:{category:slug}})
+    },
   }
 }
 </script>
