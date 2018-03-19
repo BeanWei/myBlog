@@ -44,8 +44,9 @@ export default {
   },
   watch: {
     '$route'(to,from) {
-      this.getArticleList()
-    }
+      this.getArticleList(to.params.page)
+    },
+    deep: true
   },
   methods: {
     getArticleList(page=1) {
@@ -61,10 +62,6 @@ export default {
       this.$router.push({path: `/blog/page/${val}/`,query: this.$route.query})
     }
   },
-  beforeRouterUpdate(to,from,next) {
-      next()
-      this.getArticleList(to.params.page)
-  }
 }
 </script>
 
