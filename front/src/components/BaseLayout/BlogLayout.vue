@@ -40,7 +40,7 @@
         <ul>
           <li v-for="(archive,index) in archiveList" :key="index">
             <el-badge :value="archive.num">
-              <el-button type="danger" size="small" plain>{{archive.record}}</el-button>
+              <el-button type="danger" size="small" plain @click="archiveSelect(archive.record)">{{archive.record}}</el-button>
             </el-badge>
           </li>
         </ul>
@@ -96,6 +96,9 @@ export default {
     },
     tagSelect(slug) {
       this.$router.push({name:'blog',query:{tag:slug}})
+    },
+    archiveSelect(record) {
+      this.$router.push({name:'blog',query:{archive:record.replace(/年|月/g,'')}})
     },
   }
 }

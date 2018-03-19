@@ -35,8 +35,8 @@ class PostViewSet(viewsets.ModelViewSet):
             query_set = query_set.filter(tags__slug=tags)
             #query_set = Tag.objects.get(slug=tags).post_set.all()
         if archive is not None:
-            if len(archive) != 6:
-                raise ParseError
+            # if len(archive) != 6:
+            #     raise ParseError
             #query_set = query_set.filter(timestamp__year=archive[:4], timestamp__month=archive[4:6])
             query_set = query_set.filter(timestamp__startswith="%d-%02d" % (int(archive[:4]),int(archive[4:6])))
         return query_set
