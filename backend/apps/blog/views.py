@@ -37,7 +37,8 @@ class PostViewSet(viewsets.ModelViewSet):
         if archive is not None:
             if len(archive) != 6:
                 raise ParseError
-            query_set = query_set.filter(timestamp__year=archive[:4], timestamp__month=archive[4:6])
+            #query_set = query_set.filter(timestamp__year=archive[:4], timestamp__month=archive[4:6])
+            query_set = query_set.filter(timestamp__startswith="%d-%02d" % (int(archive[:4]),int(archive[4:6])))
         return query_set
 
     def retrieve(self, request, *args, **kwargs):
