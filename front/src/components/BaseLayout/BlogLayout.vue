@@ -1,52 +1,54 @@
 <template>
   <div id='BlogLayout'>
-    <div class="web-top">
-      <div id="logo">Logo</div>
-      <div class="middle">
-        <ul>
-          <li><i class="el-icon-menu" @click="showPanle"></i></li>
-          <li><router-link :to="{name: 'blog'}">博客</router-link></li>
-          <li><router-link :to="{name: 'newsBoard'}">资讯</router-link></li>
-          <li><router-link :to="{name: 'aboutMe'}">关于</router-link></li>
-        </ul>
+    <div class="sub-body">
+      <div class="web-top">
+        <div id="logo">Logo</div>
+        <div class="middle">
+          <ul>
+            <li><i class="el-icon-menu" @click="showPanle"></i></li>
+            <li><router-link :to="{name: 'blog'}">博客</router-link></li>
+            <li><router-link :to="{name: 'newsBoard'}">资讯</router-link></li>
+            <li><router-link :to="{name: 'aboutMe'}">关于</router-link></li>
+          </ul>
+        </div>
+        <div id="nav-search">
+          <el-input placeholder="请输入内容" prefix-icon="el-icon-search"></el-input>
+        </div>        
       </div>
-      <div id="nav-search">
-        <el-input placeholder="请输入内容" prefix-icon="el-icon-search"></el-input>
-      </div>        
+      <div class="top-panel" v-show="panelShow" :panelShow="panelShow">
+        <div class="panel-item">
+          <h5>分类</h5>
+          <ul>
+            <li v-for="(category,index) in categoryList" :key="index" v-if="category.count>0">
+              <el-badge :value="category.count">
+                <el-button type="danger" size="small" plain @click="categorySelect(category.slug)">{{category.name}}</el-button>
+              </el-badge>
+            </li>
+          </ul>
+        </div>
+        <div class="panel-item">
+          <h5>标签</h5>
+          <ul>
+            <li v-for="(tag,index) in tagList" :key="index" v-if="tag.count>0">
+              <el-badge :value="tag.count">
+                <el-button type="danger" size="small" plain @click="tagSelect(tag.slug)">{{tag.name}}</el-button>
+              </el-badge>
+            </li>
+          </ul>
+        </div>
+        <div class="panel-item">
+          <h5>归档</h5>
+          <ul>
+            <li v-for="(archive,index) in archiveList" :key="index">
+              <el-badge :value="archive.num">
+                <el-button type="danger" size="small" plain @click="archiveSelect(archive.record)">{{archive.record}}</el-button>
+              </el-badge>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <router-view></router-view>
     </div>
-    <div class="top-panel" v-show="panelShow" :panelShow="panelShow">
-      <div class="panel-item">
-        <h5>分类</h5>
-        <ul>
-          <li v-for="(category,index) in categoryList" :key="index" v-if="category.count>0">
-            <el-badge :value="category.count">
-              <el-button type="danger" size="small" plain @click="categorySelect(category.slug)">{{category.name}}</el-button>
-            </el-badge>
-          </li>
-        </ul>
-      </div>
-      <div class="panel-item">
-        <h5>标签</h5>
-        <ul>
-          <li v-for="(tag,index) in tagList" :key="index" v-if="tag.count>0">
-            <el-badge :value="tag.count">
-              <el-button type="danger" size="small" plain @click="tagSelect(tag.slug)">{{tag.name}}</el-button>
-            </el-badge>
-          </li>
-        </ul>
-      </div>
-      <div class="panel-item">
-        <h5>归档</h5>
-        <ul>
-          <li v-for="(archive,index) in archiveList" :key="index">
-            <el-badge :value="archive.num">
-              <el-button type="danger" size="small" plain @click="archiveSelect(archive.record)">{{archive.record}}</el-button>
-            </el-badge>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <router-view></router-view>
     <footer>
       <div class="page-foot">页脚</div>
     </footer>
@@ -93,18 +95,24 @@ export default {
     },
     categorySelect(slug) {
       this.$router.push({name:'blog',query:{category:slug}})
+      this.panelShow = false
     },
     tagSelect(slug) {
       this.$router.push({name:'blog',query:{tag:slug}})
+      this.panelShow = false
     },
     archiveSelect(record) {
       this.$router.push({name:'blog',query:{archive:record.replace(/年|月/g,'')}})
+      this.panelShow = false
     },
   }
 }
 </script>
 
 <style scoped>
+  .sub-body {
+    min-height: calc(100vh - 50px);
+  }
   .middle ul li {
     margin: 30px;
   }

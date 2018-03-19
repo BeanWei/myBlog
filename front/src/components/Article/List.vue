@@ -1,18 +1,22 @@
 <template>
   <div id="List">
-    <div class="one-artical" v-for="(article,index) in articleList" :key='index'>
-      <h3 class="one-title"><router-link :to="{name:'article',params:{slug:article.slug}}">{{article.title}}</router-link></h3>
-      <div class="one-body">
-        <p>{{article.synopsis}}</p>
+    <div class="page-wrap">
+      <div class="content">
+        <div class="one-artical" v-for="(article,index) in articleList" :key='index'>
+          <h3 class="one-title"><router-link :to="{name:'article',params:{slug:article.slug}}">{{article.title}}</router-link></h3>
+          <div class="one-body">
+            <p>{{article.synopsis}}</p>
+          </div>
+          <div class="one-foot">
+            <ul>
+              <li><i class="el-icon-tickets"><router-link :to="{name:'blog',query:{category:article.categorySlug}}">{{article.category}}</router-link></i></li>
+              <li><i class="el-icon-news">{{article.tags}}</i></li>
+              <li><i class="el-icon-time">{{article.timestamp}}</i></li>
+            </ul>
+          </div>
+        </div>  
       </div>
-      <div class="one-foot">
-        <ul>
-          <li><i class="el-icon-tickets"><router-link :to="{name:'blog',query:{category:article.categorySlug}}">{{article.category}}</router-link></i></li>
-          <li><i class="el-icon-news">{{article.tags}}</i></li>
-          <li><i class="el-icon-time">{{article.timestamp}}</i></li>
-        </ul>
-      </div>
-    </div>  
+    </div>
     <div class="pagination">
       <el-pagination
         @current-change="handleCurrentChange"
@@ -66,6 +70,9 @@ export default {
 </script>
 
 <style scoped>
+  .page-wrap {
+    min-height: calc(100vh - 100px);
+  }
   .one-artical {
     margin: 0 auto;
     width: 50%;
