@@ -30,7 +30,7 @@
         <ul>
           <li v-for="(tag,index) in tagList" :key="index" v-if="tag.count>0">
             <el-badge :value="tag.count">
-              <el-button type="danger" size="small" plain>{{tag.name}}</el-button>
+              <el-button type="danger" size="small" plain @click="tagSelect(tag.slug)">{{tag.name}}</el-button>
             </el-badge>
           </li>
         </ul>
@@ -93,6 +93,9 @@ export default {
     },
     categorySelect(slug) {
       this.$router.push({name:'blog',query:{category:slug}})
+    },
+    tagSelect(slug) {
+      this.$router.push({name:'blog',query:{tag:slug}})
     },
   }
 }
