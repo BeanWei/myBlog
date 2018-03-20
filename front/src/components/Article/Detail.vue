@@ -61,6 +61,7 @@ export default {
   }
   .sub-info ul li {
     margin-right: 20px;
+    display: inline; 
   }
   h1 {
     padding: 40px 15px 25px;

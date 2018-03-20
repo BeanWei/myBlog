@@ -7,8 +7,8 @@
           <ul>
             <li><i class="el-icon-menu" @click="showPanle"></i></li>
             <li><router-link :to="{name: 'blog'}">博客</router-link></li>
-            <li><router-link :to="{name: 'newsBoard'}">资讯</router-link></li>
-            <li><router-link :to="{name: 'aboutMe'}">关于</router-link></li>
+            <li><router-link :to="{name: 'news'}">资讯</router-link></li>
+            <li><router-link :to="{name: 'about'}">关于</router-link></li>
           </ul>
         </div>
         <div id="nav-search">
@@ -110,6 +110,9 @@ export default {
 </script>
 
 <style scoped>
+  li {
+    display: inline; 
+  }
   .sub-body {
     min-height: calc(100vh - 50px);
   }

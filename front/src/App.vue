@@ -29,9 +29,6 @@ html , body {
 ul {
     list-style: none;
   }
-li {
-  display: inline; 
-}
 a {
   text-decoration: none;
   color: black;

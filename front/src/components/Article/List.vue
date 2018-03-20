@@ -70,6 +70,9 @@ export default {
 </script>
 
 <style scoped>
+  li {
+    display: inline; 
+  }
   .page-wrap {
     min-height: calc(100vh - 100px);
   }
