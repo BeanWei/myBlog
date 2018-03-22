@@ -1,7 +1,7 @@
 # bulid by Bean_Wei/ 2018/3/13 11:04
 from rest_framework import serializers
 from .models import *
-from django.contrib.auth.models import User
+
 
 class TagSerializer(serializers.ModelSerializer):
     count = serializers.IntegerField(source='get_post_count', read_only=True)
@@ -43,3 +43,4 @@ class PostSerializer(serializers.HyperlinkedModelSerializer):
             self.fields.pop('html')
         else:
             self.fields.pop('url')
+
