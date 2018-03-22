@@ -22,23 +22,23 @@ class CategoryViewSet(viewsets.ModelViewSet):
 class PostViewSet(FiltersMixin,viewsets.ModelViewSet):
     queryset = Post.objects.all().filter(published=True)
     serializer_class = PostSerializer
-    filter_backends = (filters.OrderingFilter,)
+    # filter_backends = (filters.OrderingFilter,)
     lookup_field = 'slug'
     lookup_value_regex = r'\w+'
 
-    filter_mappings = {
-        "title": "title",
-        "content": "content",
-        "slug": "slug",
-        "timestamp": "timestamp",
-        "tags": "tags",
-        "category": "category",
-        "read_num": "read_num",
-        "own": "own",
-        "published": "published",
-    }
-
-    filter_validation_schema = post_query_schema
+    # filter_mappings = {
+    #     "title": "title",
+    #     "content": "content",
+    #     "slug": "slug",
+    #     "timestamp": "timestamp",
+    #     "tags": "tags",
+    #     "category": "category",
+    #     "read_num": "read_num",
+    #     "own": "own",
+    #     "published": "published",
+    # }
+    #
+    # filter_validation_schema = post_query_schema
 
     def get_queryset(self):
         query_set = super().get_queryset()

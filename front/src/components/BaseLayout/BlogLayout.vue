@@ -7,12 +7,12 @@
           <ul>
             <li><i class="el-icon-menu" @click="showPanle"></i></li>
             <li><router-link :to="{name: 'blog'}">博客</router-link></li>
-            <li><router-link :to="{name: 'news'}">资讯</router-link></li>
+            <li><router-link :to="{name: 'news'}">发现</router-link></li>
             <li><router-link :to="{name: 'about'}">关于</router-link></li>
           </ul>
         </div>
         <div id="nav-search">
-          <el-input placeholder="请输入内容" prefix-icon="el-icon-search"></el-input>
+          <el-input placeholder="请输入内容" prefix-icon="el-icon-search" v-model.trim="question" @keyup.enter.native="search" auto-complete="on"></el-input>
         </div>        
       </div>
       <div class="top-panel" v-show="panelShow" :panelShow="panelShow">
@@ -67,6 +67,7 @@ export default {
       categoryList: [],
       tagList: [],
       archiveList: [],
+      question: '',
     }
   },
   created() {
@@ -104,6 +105,10 @@ export default {
     archiveSelect(record) {
       this.$router.push({name:'blog',query:{archive:record.replace(/年|月/g,'')}})
       this.panelShow = false
+    },
+    search() {
+      this.$router.push({name:'blog',query:{search:this.question}})
+      this.question = ''
     },
   }
 }

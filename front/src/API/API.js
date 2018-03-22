@@ -1,11 +1,11 @@
 import fetch from '@/utils/fetch'
 
 //文章列表
-export function articles(limit,offset,category,tag,archive) {
+export function articles(limit,offset,category,tag,archive,search) {
   return fetch({
     method: 'get',
     url: '/blog/articles/',
-    params: {limit,offset,category,tag,archive}
+    params: {limit,offset,category,tag,archive,search}
   })
 }
 
