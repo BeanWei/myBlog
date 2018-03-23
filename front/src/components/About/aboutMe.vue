@@ -41,7 +41,7 @@
           <li><i class="el-icon-location-outline"></i>重庆市沙坪坝大学城</li>
           <li><i class="el-icon-phone-outline"></i>18523152354</li>
           <li><i class="el-icon-message"></i>157318439@qq.com</li>
-          <li><i class="el-icon-view"></i><a href="https://github.com/BeanWei" title="Github">@BeanWei(Github)</a></li>
+          <li><i class="el-icon-view"></i><a href="https://github.com/BeanWei" title="Github" target="_blank">@BeanWei(Github)</a></li>
         </ul>
       </div>
     </div>

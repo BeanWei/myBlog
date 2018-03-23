@@ -44,7 +44,7 @@ export default {
     }
   },
   created() {
-    this.getArticleList(this.$route.params.page,this.$route.query.category,this.$route.query.tag,this.$route.query.archive);
+    this.getArticleList(this.$route.params.page,this.$route.query.category,this.$route.query.tag,this.$route.query.archive,this.$route.query.search);
   },
   watch: {
     '$route'(to,from) {
@@ -56,7 +56,7 @@ export default {
     getArticleList(page=1) {
       const limit = 5
       const offset = limit * (page - 1)
-      articles(limit,offset,this.$route.query.category,this.$route.query.tag,this.$route.query.archive).then(res => {
+      articles(limit,offset,this.$route.query.category,this.$route.query.tag,this.$route.query.archive,this.$route.query.search).then(res => {
         this.articleList = res.data.results
         this.blogCount = res.data.count
         this.currentPage = Number(page)
