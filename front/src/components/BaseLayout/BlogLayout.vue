@@ -7,7 +7,7 @@
           <ul>
             <li><i class="el-icon-menu" @click="showPanle"></i></li>
             <li><router-link :to="{name: 'blog'}">博客</router-link></li>
-            <li><router-link :to="{name: 'news'}">发现</router-link></li>
+            <li><router-link :to="{name: 'found'}">发现</router-link></li>
             <li><router-link :to="{name: 'about'}">关于</router-link></li>
           </ul>
         </div>
