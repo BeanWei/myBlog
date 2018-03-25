@@ -40,3 +40,12 @@ export function archives() {
     url: `/blog/articles/archive/`
   })
 }
+
+//-------发现栏目【爬虫和数据可视化】----------
+//掘金文章的爬取
+export function articleSpider() {
+  return fetch({
+    method: 'get',
+    url: `/found/articlespider/`
+  })
+}

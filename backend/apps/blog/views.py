@@ -6,8 +6,8 @@ from rest_framework.decorators import list_route
 from .models import *
 from .serializers import *
 # Create your views here.
-from .search_index import post_query_schema
-from filters.mixins import FiltersMixin
+# from .search_index import post_query_schema
+# from filters.mixins import FiltersMixin
 
 class TagViewSet(viewsets.ModelViewSet):
     queryset = Tag.objects.all()
@@ -19,7 +19,7 @@ class CategoryViewSet(viewsets.ModelViewSet):
     serializer_class = CategorySerializer
     pagination_class = None
 
-class PostViewSet(FiltersMixin,viewsets.ModelViewSet):
+class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all().filter(published=True)
     serializer_class = PostSerializer
     # filter_backends = (filters.OrderingFilter,)

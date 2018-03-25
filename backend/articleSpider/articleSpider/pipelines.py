@@ -4,18 +4,18 @@
 #
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
-from articleSpider.models import Juejin
+from apps.articleSpider.models import Juejin
 
 class ArticlespiderPipeline(object):
     def process_item(self, item, spider):
         try:
-            articleUrl = Juejin.objects.get(articleUrl = item['originalUrl'])
+            articleUrl = Juejin.objects.get(articleUrl = item['articleUrl'])
             print("This article already exist")
             return item
         except Juejin.DoesNotExist:
             pass
 
-        juejin = Juejin
+        juejin = Juejin()
         juejin.articleUrl = item['articleUrl']
         juejin.title = item['title']
         juejin.author = item['author']

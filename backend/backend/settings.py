@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
-    'articleSpider',
+    'apps.articleSpider',
     'rest_framework',
     'filters',
     'corsheaders',
